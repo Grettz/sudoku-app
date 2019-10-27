@@ -7,11 +7,11 @@ class SudokuSolver():
         self.sudoku = sudoku
 
     def solve(self):
-        print('Solving sudoku...\n')
+        #print('Solving sudoku...\n')
 
         # Fill each empty cell with a list of valid numbers for that cell
         self.add_possible_values()
-        self.pprint()
+        #self.pprint()
 
         num_added = 0 # Number of cells filled in with numbers
         while True:
@@ -26,12 +26,14 @@ class SudokuSolver():
             num_added += counter
 
         if self.is_solved():
-            print('\nSudoku Solved.')
+            #print('\nSudoku Solved.')
+            pass
         else:
-            print('\nCould not solve sudoku..')
+            #print('\nCould not solve sudoku..')
+            pass
 
-        print('Filled {0} cells.'.format(num_added))
-        self.pprint()
+        #print('Filled {0} cells.'.format(num_added))
+       # self.pprint()
 
         return self.sudoku
 
@@ -66,7 +68,8 @@ class SudokuSolver():
                     self.update_cell_values(i, j)
                     counter += 1
 
-        print('Filled {0} cells that have a single possible value'.format(counter))
+        #print('Filled {0} cells that have a single possible value'.format(counter))
+
         return counter
 
     def find_numbers(self):
@@ -96,7 +99,7 @@ class SudokuSolver():
                             if (k+1) in cell:
                                 self.sudoku[i][j] = k + 1
                                 self.update_cell_values(i, j)
-                                print('Filled {} in row {}, column {}'.format(k+1, i, j))
+                                #print('Filled {} in row {}, column {}'.format(k+1, i, j))
                                 counter += 1
                 
         # Search columns
@@ -122,7 +125,7 @@ class SudokuSolver():
                             if (k+1) in cell:
                                 self.sudoku[i][j] = k + 1
                                 self.update_cell_values(i, j)
-                                print('Filled {} in column {}, row {}'.format(k+1, j, i))
+                                #print('Filled {} in column {}, row {}'.format(k+1, j, i))
                                 counter += 1
 
         # Search blocks
@@ -155,7 +158,7 @@ class SudokuSolver():
                                 if (k+1) in cell:
                                     self.sudoku[_i][_j] = k + 1
                                     self.update_cell_values(_i, _j)
-                                    print('Filled {} in row {}, column {} from block'.format(k+1, _i, _j))
+                                    #print('Filled {} in row {}, column {} from block'.format(k+1, _i, _j))
 
 
 
@@ -341,6 +344,42 @@ sudoku4 = [
 
 
 if __name__ == "__main__":
-    s = SudokuSolver(sudoku)
-    s.pprint()
-    s.solve()
+    # Attempt to solve all sudokus from each difficulty
+    difficulty = ['Very Easy', 'Easy', 'Moderate', 'Hard', 'Very Hard']
+
+    for lvl in range(5):
+        with open('sudoku_9x9_lvl_' + str(lvl+1) + '.txt') as file:
+            ran = 0
+            solved = 0
+
+            # Get each sudoku from line
+            for line in file:
+                if line[-1] == ']':
+                    sudoku = line[2:-2].split('], [')
+                else:
+                    sudoku = line[2:-3].split('], [')
+
+                for i, row in enumerate(sudoku):
+                    sudoku[i] = row.split(', ')
+                    for j in range(9):
+                        try:
+                            sudoku[i][j] = int(sudoku[i][j])
+                        except:
+                            pass
+                    
+                s = SudokuSolver(sudoku)
+                s.solve()
+
+                if s.is_solved() is True:
+                    solved += 1
+                ran += 1
+
+            percent = (solved / ran) * 100
+
+            print('{0} - {1:2.2f}% - {2}/{3}'.format(difficulty[lvl], percent, solved, ran))
+
+
+
+    # s = SudokuSolver(sudoku)
+    # s.pprint()
+    # s.solve()
