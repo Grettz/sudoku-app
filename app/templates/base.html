@@ -1,0 +1,36 @@
+{% set navigation_bar = [
+    ('/', 'index', 'Home'),
+    ('/sudoku', 'sudoku', 'Sudoku'),
+    ('/about', 'about', 'About')
+] -%}
+{% set active_page = active_page|default('index') -%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - Flask App</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="navbar">
+        <ul>
+            {% for href, id, caption in navigation_bar %}
+            <li{% if id == active_page %} class="active"{% endif
+            %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2008 by <a href="http://www.google.com/">you</a>.
+        {% endblock %}
+    </div>
+
+    {% block script %}{% endblock %}
+</body>
+</html>
