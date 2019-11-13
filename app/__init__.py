@@ -8,10 +8,10 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
-
-    if test_config is None:
+    
+    """     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
     else:
@@ -22,7 +22,7 @@ def create_app(test_config=None):
     try:
         os.makedirs(app.instance_path)
     except OSError:
-        pass
+        pass """
 
     @app.route('/')
     def home():
@@ -44,7 +44,6 @@ def create_app(test_config=None):
                 data = {}
                 data['sudoku'] = json.loads(line)
                 sudokus.append(data)
-                print(data)
 
             sudoku = random.choice(sudokus)
             return jsonify(sudoku)
