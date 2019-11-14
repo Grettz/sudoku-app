@@ -12,7 +12,7 @@
     <div id='app' draggable='false'>
       <div id='left-bar' class='sidebar'>
         <button v-on:click='get_moderate_sudoku'>[[ message ]]</button><br>
-        <a href="#" id='get_moderate_sudoku'>This is a button</a>
+        <a href="#" id='get_moderate_sudoku'>Get Moderate Sudoku</a>
       </div>
 
       {# Create Sudoku Grid #}
@@ -39,7 +39,7 @@
     el: '#app',
     delimiters: ["[[", "]]"],
     data: {
-      message: 'Yo',
+      message: 'Hello',
       items: [
         { message: 'Hey' },
         { message: 'Hi' }
@@ -47,7 +47,7 @@
     },
     methods: {
       get_moderate_sudoku: function(){
-        this.message = this.message.reverse()
+        this.message = this.message.split("").reverse().join("")
 
       }
     }
