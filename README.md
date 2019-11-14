@@ -1,3 +1,6 @@
+Live Deployment:
+https://grettz-sudoku.herokuapp.com/
+
 # sudoku-app
 [WIP] Sudoku App
 
