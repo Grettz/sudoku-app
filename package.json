@@ -7,6 +7,15 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "keywords" : [
+    "sudoku",
+    "psudoku",
+    "psuedoku",
+    "heroku"
+  ],
+  "engines": {
+    "node": "^12.13.1"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "uuid": "^3.3.2",
