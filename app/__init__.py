@@ -1,7 +1,7 @@
 import os
 import json
 import random
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_file, current_app
 
 # def create_app(test_config=None):
 
@@ -24,10 +24,16 @@ try:
     os.makedirs(app.instance_path)
 except OSError:
     pass """
+    
+from .config import Config
+
+app.SECRET_KEY = os.environ.get('SECRET_KEY')
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    root_dir = current_app.config['ROOT_DIR']
+    entry = os.path.join(root_dir, 'public/index.html')
+    return send_file(entry)
 
 @app.route('/sudoku')
 def sudoku():
