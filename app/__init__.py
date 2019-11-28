@@ -31,8 +31,8 @@ app.SECRET_KEY = os.environ.get('SECRET_KEY')
 
 @app.route('/')
 def home():
-    root_dir = current_app.config['ROOT_DIR']
-    entry = os.path.join(root_dir, 'public/index.html')
+    dist_dir = current_app.config['DIST_DIR']
+    entry = os.path.join(dist_dir, 'index.html')
     return send_file(entry)
 
 @app.route('/sudoku')
