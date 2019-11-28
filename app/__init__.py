@@ -3,8 +3,6 @@ import json
 import random
 from flask import Flask, render_template, jsonify, send_file, current_app
 
-from .config import Config
-
 # create and configure the app
 app = Flask(__name__, instance_relative_config=True)
 # app.config.from_mapping(
