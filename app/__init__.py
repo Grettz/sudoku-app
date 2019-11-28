@@ -3,14 +3,14 @@ import json
 import random
 from flask import Flask, render_template, jsonify, send_file, current_app
 
-# def create_app(test_config=None):
+from .config import Config
 
 # create and configure the app
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_mapping(
-    SECRET_KEY='dev',
-    # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-)
+# app.config.from_mapping(
+#     SECRET_KEY='dev',
+#     # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+# )
 
 """     if test_config is None:
     # load the instance config, if it exists, when not testing
@@ -26,8 +26,6 @@ except OSError:
     pass """
     
 from .config import Config
-
-app.SECRET_KEY = os.environ.get('SECRET_KEY')
 
 @app.route('/')
 def home():
