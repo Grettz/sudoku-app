@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm run build",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -14,7 +15,7 @@
     "heroku"
   ],
   "engines": {
-    "node": "^12.13.1"
+    "node": "10.15.3"
   },
   "dependencies": {
     "axios": "^0.18.0",
