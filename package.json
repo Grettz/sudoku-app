@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm run build",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "yarn build"
   },
   "keywords" : [
     "sudoku",
@@ -15,7 +15,8 @@
     "heroku"
   ],
   "engines": {
-    "node": "10.15.3"
+    "node": ">=10.15.3",
+    "npm": ">=6.4.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
