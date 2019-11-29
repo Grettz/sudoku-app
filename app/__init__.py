@@ -4,7 +4,7 @@ import random
 from flask import Flask, render_template, jsonify, send_file, current_app
 
 # create and configure the app
-app = Flask(__name__)
+app = Flask(__name__, static_folder='dist')
 # app.config.from_mapping(
 #     SECRET_KEY='dev',
 #     # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
