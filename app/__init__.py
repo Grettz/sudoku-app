@@ -1,12 +1,10 @@
 import os
 import json
 import random
-from whitenoise import WhiteNoise
 from flask import Flask, render_template, jsonify, send_file, current_app
 
 # create and configure the app
 app = Flask(__name__, static_folder='dist/')
-app.wsgi_app = WhiteNoise(app.wsgi_app, root='dist/')
 # app.config.from_mapping(
 #     SECRET_KEY='dev',
 #     # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
